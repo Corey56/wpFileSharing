@@ -20,5 +20,6 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('wpFiles/', include('wpFiles.urls')),
+    path(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
 
 ]

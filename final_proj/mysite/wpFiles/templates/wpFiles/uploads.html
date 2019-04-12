@@ -1,0 +1,7 @@
+<h1>{{ academic_class.class_code }}</h1>
+<ul>
+{% for upload in academic_class.upload_set.all %}
+    <li>{{ upload.alias }}</li>
+{% endfor %}
+</ul>
+

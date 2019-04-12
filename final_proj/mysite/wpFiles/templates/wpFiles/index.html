@@ -1,7 +1,7 @@
 {% if dept_list %}
     <ul>
     {% for dept in dept_list %}
-        <li><a a href="{% url 'wpFiles:classInDept' dept.dept_code %}">{{ dept.dept_text }}</a></li>
+        <li><a a href="{% url 'classInDept' dept.id %}">{{ dept.dept_code }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

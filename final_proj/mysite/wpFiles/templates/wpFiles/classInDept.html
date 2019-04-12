@@ -1,0 +1,7 @@
+<h1>{{ dept.dept_code }}</h1>
+<ul>
+{% for academic_class in dept.academic_class_set.all %}
+    <li><a a href="{% url 'uploads' academic_class.id %}">{{ academic_class.class_code }}</a></li>
+{% endfor %}
+</ul>
+

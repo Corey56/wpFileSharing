@@ -8,8 +8,7 @@ def index(request):
     dept_list = Academic_dept.objects.order_by('-dept_code')
     context = {'dept_list': dept_list}
     return render(request, 'wpFiles/index.html', context)
-    
-      
+          
 def classInDept(request, dept_id):
     dept = get_object_or_404(Academic_dept, pk=dept_id)
     return render(request, 'wpFiles/classInDept.html', {'dept': dept})

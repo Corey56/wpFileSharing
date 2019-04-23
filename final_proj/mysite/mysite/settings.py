@@ -122,3 +122,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STAR_RATINGS_RERATE = False
 STAR_RATINGS_ANONYMOUS = True
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

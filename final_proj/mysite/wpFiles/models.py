@@ -29,12 +29,14 @@ class Upload(models.Model):
         on_delete=models.CASCADE,
     )
     document = models.FileField(upload_to='documents/')
-    rating = GenericRelation(Rating, related_query_name='Files')
     downloads = models.IntegerField(default=0)
-    flags = models.IntegerField
+    flags = models.IntegerField(default=0)
     upload_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.alias 
+    class Meta:
+        ordering = ["-upload_date","-downloads","-flags"]
+
     
   
 

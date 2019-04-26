@@ -8,6 +8,8 @@ from .forms import UploadForm
 from .models import Upload
 
 
+
+
 def index(request):
     dept_list = Academic_dept.objects.order_by('-dept_code')
     context = {'dept_list': dept_list}
@@ -23,9 +25,13 @@ def uploads(request, class_id):
     
 def uploadFile(request):
     if request.method == 'POST':
-        form = UploadForm(request.POST or None)
+        form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            return HttpResponseRedirect('upload')
+            form.save()
+            return HttpResponseRedirect('/wpFiles')
     else:
-        form = UploadForm(request.POST or None)
+        form = UploadForm()
     return render(request, 'wpFiles/upload.html', {'form': form})
+
+
+

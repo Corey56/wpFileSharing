@@ -6,15 +6,14 @@
 <h1>{{ academic_class.class_code }}</h1>
 <table style="width:100%">
 <tr>
-	<th>Filename</th><th>Upload Date</th><th>Downloads</th><th>Rating</th>
+	<th>Filename</th><th>Upload Date</th><th>Rating</th>
 </tr>
 
 {% for upload in academic_class.upload_set.all %}
 	<tr>    
 		<td><a href="{{ upload.document.url }}">{{ upload.alias }}</a></td>
 		<td>{{ upload.upload_date }}</td>
-		<td>{{ upload.downloads }}</td>
-		<td>Likes</td>
+		<td>{% ratings upload 15 15 %}</td>
 	</tr>
 {% endfor %}
 </table>

@@ -27,17 +27,25 @@
     </div>
 </nav>
 
+<div class="container">
+    <div class="row">
+        <h1 class="col-sm-2 offset-sm-2"> Academic Departments </h1>
+    </div>
+</div>
+
+
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'index' %}"> Home </a></li>
 </ul>
         
+
 
 {% if dept_list %}
     <ul class="list-group">
     {% for dept in dept_list %}
         <li class="list-group-item">
             <a a href="{% url 'classInDept' dept.id %}">
-                {{ dept.dept_code }}
+                {{ dept.dept_code }}: {{ dept.dept_name }}
             </a>
         </li>
     {% endfor %}

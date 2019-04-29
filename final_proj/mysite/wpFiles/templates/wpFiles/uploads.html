@@ -2,9 +2,39 @@
 {% load ratings %}
 <html>
 <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
-<h1>{{ academic_class.class_code }}</h1>
-<table style="width:100%">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<div class="container">
+    <div class="jumbotron">
+    <h1> WPFiles </h1>
+    </div>
+</div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'index' %}"> Home </a></li>
+            <li><a href="{% url 'uploadFile' %}"> Upload File </a></li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}"> Home </a></li>
+    <li class="breadcrumb-item"><a href="../{{ academic_class.pk }}"> 
+         {{academic_class.dept_code }}</a> </li>
+    <li class="breadcrumb-item"> {{ academic_class.class_code }} </li>
+</ul>
+        
+
+<h1 class="container">{{ academic_class.class_code }}</h1>
+<table class="table">
 <tr>
 	<th>Filename</th><th>Upload Date</th><th>Rating</th>
 </tr>
@@ -17,5 +47,3 @@
 	</tr>
 {% endfor %}
 </table>
-
-</html>

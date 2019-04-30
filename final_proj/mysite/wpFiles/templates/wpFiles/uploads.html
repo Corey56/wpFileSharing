@@ -14,6 +14,7 @@
 <div class="container">
     <div class="jumbotron">
     <h1> WPFiles </h1>
+        <p> An online repository for all studying materials.</p>
     </div>
 </div>
 <nav class="navbar navbar-inverse">
@@ -27,13 +28,15 @@
 
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'index' %}"> Home </a></li>
-    <li class="breadcrumb-item"><a href="../{{ academic_class.pk }}"> 
+    <li class="breadcrumb-item"><a href="../{{ academic_class.dept_code.pk }}"> 
          {{academic_class.dept_code }}</a> </li>
     <li class="breadcrumb-item"> {{ academic_class.class_code }} </li>
-</ul>
-        
+</ul> 
 
-<h1 class="container">{{ academic_class.class_code }}</h1>
+
+<h1 class="container">
+    {{academic_class.class_code}}: {{ academic_class.class_name }}
+</h1>
 <table class="table">
 <tr>
 	<th>Filename</th><th>Upload Date</th><th>Rating</th>

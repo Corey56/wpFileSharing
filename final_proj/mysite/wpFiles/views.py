@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 
 from .forms import UploadForm
 from .models import Upload
+from watson import search as watson
 
 
 
@@ -32,6 +33,26 @@ def uploadFile(request):
     else:
         form = UploadForm()
     return render(request, 'wpFiles/upload.html', {'form': form})
+
+def search(request):
+    criteria = request.GET.get('criteria')
+    length = len(watson.search(str(request.GET.get('q'))))
+    #if length == 0:
+    #    return
+    if criteria == 'up':
+        search_results = watson.filter(Upload, str(request.GET.get('q')))
+        return render(request, 'wpFiles/search.html', {'search_results':search_results}) 
+    elif criteria == 'de':   
+        search_results = watson.filter(Academic_dept, str(request.GET.get('q')))
+        return render(request, 'wpFiles/searchDept.html', {'search_results':search_results}) 
+    elif criteria == 'co':
+        search_results = watson.filter(Academic_class, str(request.GET.get('q')))
+        return render(request, 'wpFiles/searchClass.html', {'search_results':search_results}) 
+   
+    
+  
+           
+        
 
 
 

@@ -5,7 +5,6 @@ from django.contrib.contenttypes.fields import GenericRelation
 from star_ratings.models import Rating
 
 
-# Create your models here.
 class Academic_dept(models.Model):
     dept_code = models.CharField(max_length=10,unique=True)
     dept_name = models.CharField(max_length=100)

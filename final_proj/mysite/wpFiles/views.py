@@ -1,9 +1,7 @@
 from django.shortcuts import render
-#from django.http import HttpResponse
 from .models import Academic_dept, Academic_class, Upload
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
-
 from .forms import UploadForm
 from .models import Upload
 from watson import search as watson
@@ -12,7 +10,7 @@ from watson import search as watson
 
 
 def index(request):
-    dept_list = Academic_dept.objects.order_by('-dept_code')
+    dept_list = Academic_dept.objects.order_by('dept_code')
     context = {'dept_list': dept_list}
     return render(request, 'wpFiles/index.html', context)
           

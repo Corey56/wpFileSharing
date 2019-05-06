@@ -8,6 +8,6 @@ urlpatterns = [
     path('upload',views.uploadFile, name='uploadFile'),
     path(r"^search/", include("watson.urls", namespace="watson")),
     path('search', views.search, name='search'),
+    path('signup/', views.signup.as_view(), name='signup'),
 	
 ]
-

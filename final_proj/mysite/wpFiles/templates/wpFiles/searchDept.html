@@ -23,7 +23,7 @@
             <li class="active"><a href="{% url 'index' %}"> Home </a></li>
             <li><a href="{% url 'uploadFile' %}"> Upload File </a></li>
             <li>
-	        <form class="navbar-form navbar-right" action="{% url 'search' %}">
+	             <form class="navbar-form navbar-right" action="{% url 'search' %}">
                   <input name="q" value="{{request.GET.q}}" placeholder="Search" required>
                    <select name="criteria" required>
                     <option value="" disabled selected>Search in...</option>
@@ -34,6 +34,11 @@
                   <input type="submit" value="Go">
                 </form>
             </li>
+          {% if user.is_authenticated %}
+            <li class="navbar-left"><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li class="navbar-left"><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
         </ul>
     </div>
 </nav>

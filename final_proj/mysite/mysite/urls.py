@@ -20,10 +20,12 @@ from django.conf.urls.static import static
 
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('wpFiles/', include('wpFiles.urls')),
     path(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
 ]
 

@@ -35,6 +35,11 @@
                   <input type="submit" value="Go" required>
                 </form>
              </li>
+           {% if user.is_authenticated %}
+             <li class="navbar-left"><a href="{% url 'logout' %}">Logout</a></li>
+           {% else %}
+             <li class="navbar-left"><a href="{% url 'login' %}">Login</a></li>
+           {% endif %}
         </ul>
     </div>
 </nav>

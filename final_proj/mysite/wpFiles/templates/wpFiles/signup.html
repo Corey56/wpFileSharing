@@ -1,5 +1,5 @@
 {% load static %}
-{% load ratings %}
+
 <html>
 <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -23,7 +23,7 @@
             <li class="active"><a href="{% url 'index' %}"> Home </a></li>
             <li><a href="{% url 'uploadFile' %}"> Upload File </a></li>
             <li>
-                <form class="navbar-form navbar-right" action="{% url 'search' %}">
+	             <form class="navbar-form navbar-right" action="{% url 'search' %}">
                   <input name="q" value="{{request.GET.q}}" placeholder="Search" required>
                    <select name="criteria" required>
                     <option value="" disabled selected>Search in...</option>
@@ -31,7 +31,7 @@
                     <option value="de">Departments</option>
                     <option value="co">Courses</option>
                   </select>
-                  <input type="submit" value="Go" required>
+                  <input type="submit" value="Go">
                 </form>
             </li>
           {% if user.is_authenticated %}
@@ -45,25 +45,15 @@
 
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'index' %}"> Home </a></li>
-    <li class="breadcrumb-item"><a href="../{{ academic_class.dept_code.pk }}"> 
-         {{academic_class.dept_code }}</a> </li>
-    <li class="breadcrumb-item"> {{ academic_class.class_code }} </li>
 </ul> 
 
-
-<h1 class="container">
-    {{academic_class.class_code}}: {{ academic_class.class_name }}
-</h1>
-<table class="table">
-<tr>
-	<th>Filename</th><th>Upload Date</th><th>Rating</th>
-</tr>
-
-{% for upload in academic_class.upload_set.all %}
-	<tr>    
-		<td><a href="{{ upload.document.url }}">{{ upload.alias }}</a></td>
-		<td>{{ upload.upload_date }}</td>
-		<td>{% ratings upload 15 15 %}</td>
-	</tr>
-{% endfor %}
-</table>
+{% block content %}
+<div class="container">
+  <h1>Create an Account</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 {% load static %}
-{% load ratings %}
+
 <html>
 <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -50,20 +50,17 @@
     <li class="breadcrumb-item"> {{ academic_class.class_code }} </li>
 </ul> 
 
+{% block content %}
+<h1 class="container">Login</h1>
+<div class="container">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+  <a href="{% url 'signup' %}">Create an Account</a>
+</div>
+{% endblock %}
+    
 
-<h1 class="container">
-    {{academic_class.class_code}}: {{ academic_class.class_name }}
-</h1>
-<table class="table">
-<tr>
-	<th>Filename</th><th>Upload Date</th><th>Rating</th>
-</tr>
 
-{% for upload in academic_class.upload_set.all %}
-	<tr>    
-		<td><a href="{{ upload.document.url }}">{{ upload.alias }}</a></td>
-		<td>{{ upload.upload_date }}</td>
-		<td>{% ratings upload 15 15 %}</td>
-	</tr>
-{% endfor %}
-</table>

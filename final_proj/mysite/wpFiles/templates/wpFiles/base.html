@@ -1,16 +1,18 @@
+<!doctype html>
+
 {% load static %}
 {% load ratings %}
-<html>
-<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <div class="container">
     <div class="jumbotron">
     <h1> WPFiles </h1>
@@ -23,7 +25,7 @@
             <li class="active"><a href="{% url 'index' %}"> Home </a></li>
             <li><a href="{% url 'uploadFile' %}"> Upload File </a></li>
             <li>
-                <form class="navbar-form navbar-right" action="{% url 'search' %}">
+               <form class="navbar-form navbar-right" action="{% url 'search' %}">
                   <input name="q" value="{{request.GET.q}}" placeholder="Search" required>
                    <select name="criteria" required>
                     <option value="" disabled selected>Search in...</option>
@@ -33,37 +35,18 @@
                   </select>
                   <input type="submit" value="Go" required>
                 </form>
-            </li>
-          {% if user.is_authenticated %}
-            <li class="navbar-left"><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-            <li class="navbar-left"><a href="{% url 'login' %}">Login</a></li>
-          {% endif %}
+             </li>
         </ul>
     </div>
 </nav>
 
+<div class="container">
+    <div class="row">
+        <h1 class="col-sm-2 offset-sm-2"> Academic Departments </h1>
+    </div>
+</div>
+
+
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'index' %}"> Home </a></li>
-    <li class="breadcrumb-item"><a href="../{{ academic_class.dept_code.pk }}"> 
-         {{academic_class.dept_code }}</a> </li>
-    <li class="breadcrumb-item"> {{ academic_class.class_code }} </li>
-</ul> 
-
-
-<h1 class="container">
-    {{academic_class.class_code}}: {{ academic_class.class_name }}
-</h1>
-<table class="table">
-<tr>
-	<th>Filename</th><th>Upload Date</th><th>Rating</th>
-</tr>
-
-{% for upload in academic_class.upload_set.all %}
-	<tr>    
-		<td><a href="{{ upload.document.url }}">{{ upload.alias }}</a></td>
-		<td>{{ upload.upload_date }}</td>
-		<td>{% ratings upload 15 15 %}</td>
-	</tr>
-{% endfor %}
-</table>
+</ul>

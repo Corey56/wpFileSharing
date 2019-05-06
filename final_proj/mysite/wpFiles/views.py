@@ -5,6 +5,9 @@ from django.http import HttpResponseRedirect
 from .forms import UploadForm
 from .models import Upload
 from watson import search as watson
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 
 
 
@@ -46,6 +49,12 @@ def search(request):
     elif criteria == 'co':
         search_results = watson.filter(Academic_class, str(request.GET.get('q')))
         return render(request, 'wpFiles/searchClass.html', {'search_results':search_results}) 
+
+class signup(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'wpFiles/signup.html'
+    
    
     
   

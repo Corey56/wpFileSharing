@@ -1,6 +1,7 @@
 <!doctype html>
 
 {% load static %}
+{% load ratings %}
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
@@ -35,6 +36,11 @@
                   <input type="submit" value="Go" required>
                 </form>
              </li>
+           {% if user.is_authenticated %}
+             <li class="navbar-left"><a href="{% url 'logout' %}">Logout</a></li>
+           {% else %}
+             <li class="navbar-left"><a href="{% url 'login' %}">Login</a></li>
+           {% endif %}
         </ul>
     </div>
 </nav>
@@ -49,8 +55,6 @@
 <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'index' %}"> Home </a></li>
 </ul>
-        
-
 
 {% if dept_list %}
     <ul class="list-group">
@@ -66,5 +70,3 @@
     <p>No classes are available.</p>
 {% endif %}
 </div>
-
-

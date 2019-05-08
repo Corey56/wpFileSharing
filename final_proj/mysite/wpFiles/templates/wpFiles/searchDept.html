@@ -23,7 +23,7 @@
             <li class="active"><a href="{% url 'index' %}"> Home </a></li>
             <li><a href="{% url 'uploadFile' %}"> Upload File </a></li>
             <li>
-	             <form class="navbar-form navbar-right" action="{% url 'search' %}">
+	        <form class="navbar-form navbar-right" action="{% url 'search' %}">
                   <input name="q" value="{{request.GET.q}}" placeholder="Search" required>
                    <select name="criteria" required>
                     <option value="" disabled selected>Search in...</option>

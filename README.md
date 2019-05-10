@@ -1,3 +1,8 @@
+To install:
+  -clone this repository
+  -pip install django-star-ratings
+  -pip install django-watson
+
 Overview:
   This app was developed for the purpose of storing academic files, sorted by departments and courses.
   Users can  navigate the site directory, search and sort files, as well as upload, download, and rate files.
@@ -6,7 +11,7 @@ Overview:
 
 Architecture:
   This app uses 3 classes: Academic_dept(models.Model), Academic_class(models.Model), and Upload(models.Model).
-  Academic_dept is at the top of the heirarchy, and includes dept_code, which is the code for each department 
+  Academic_dept is at the top of the hierarchy, and includes dept_code, which is the code for each department 
   (i.e. EECS), as well as dept_name (i.e. Electrical Engineering and Computer Science). Academic_class which 
   has dept_code as a Foreign Key from Academic_dept, class_code which is the code for each course (i.e. IT394),
   as well as class_name which is the full name of the course (i.e. Distributed Application Development).The 
@@ -20,6 +25,7 @@ Testing:
   
 Known Issues:
   Warning flags for URL patterns '^ratings/' and '^search/', however this has not caused any issues thus far.
+  Although we were able to deploy the app, we were not able to migrate from sqllite to mysql. The db content stored by heroku is therefore wiped at least once every 24 hours, meaning that the app is not fully functional. This is obviously a major issue that needs to be fixed in future improvements. 
 
 
 Future Improvements:
@@ -29,8 +35,13 @@ Future Improvements:
   identify inappropriate content and remove them. We would also like to add a 'favorite' feature wherein users 
   can favorite different files and they will be shown on their dashboard at login (we also wish to add a dashboard feature).
   Add feature to upload multiple files at once. Restructure app to allow for multiple files with same alias, and tie files to
-  users who added them. Add a 'How to Use' button to help plebes with understanding the site.
+  users who added them. Add a 'How to Use' button to help plebes with understanding the site. We would also like to add a filter    so that users may sort the upload results by rating or alias, rather than just date uploaded. Finally, we would like to update the templates so that clicking on a file opens it in a new page rather than the same page.
 
 Resources:
   http://wpfiles.herokuapp.com/wpFiles/ for general users
   http://wpfiles.herokuapp.com/admin/ for admin, username admin and password cisco
+  
+  -star ratings from https://github.com/wildfish/django-star-ratings
+  -watson from https://github.com/etianen/django-watson
+  
+  

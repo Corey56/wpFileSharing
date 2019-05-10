@@ -1,0 +1,30 @@
+{% extends 'wpFiles/base.html' %}
+{% block content %}
+
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}"> Home </a></li>
+</ul> 
+
+
+
+{% if search_results %}
+  <h1 class="container">
+      Search returned {{ search_results|length }} result(s):
+  </h1>
+  <table class="table">
+    <tr>
+	    <th>Course Code</th><th>Course Name</th>
+    </tr>
+  {% for result in search_results %} 
+      <tr>
+        <td><a href="{% url 'uploads' result.pk %}">{{ result.class_code }}</a></td>
+        <td>{{ result.class_name }}</td>
+      </tr>
+  {% endfor %}
+{% else %}
+  <h1 class="container">
+      Search returned 0 results.
+  </h1>
+{% endif %}
+{% endblock %}
+

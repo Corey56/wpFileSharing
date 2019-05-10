@@ -1,0 +1,32 @@
+{% extends 'wpFiles/base.html' %}
+{% block content %}
+
+{% load ratings %}
+<ul class="breadcrumb">
+  <li class="breadcrumb-item"><a href="{% url 'index' %}"> Home </a></li>
+  <li class="breadcrumb-item"><a href="../{{ academic_class.dept_code.pk }}"> 
+     {{ academic_class.dept_code }}</a> </li>
+  <li class="breadcrumb-item"> {{ academic_class.class_code }} </li>
+</ul> 
+
+
+<h1 class="container">
+   {{ academic_class.class_code }}: {{ academic_class.class_name }}
+</h1>
+
+<table class="table">
+
+<tr>
+	<th>Filename</th><th>Upload Date</th><th>Rating</th>
+</tr>
+
+{% for upload in academic_class.upload_set.all %}
+	<tr>    
+		<td><a href="{{ upload.document.url }}">{{ upload.alias }}</a></td>
+		<td>{{ upload.upload_date }}</td>
+		<td>{% ratings upload 15 15 %}</td>
+  </tr>
+{% endfor %}
+
+</table>
+{% endblock %}
